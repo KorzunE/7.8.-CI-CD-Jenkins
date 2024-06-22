@@ -1,0 +1,8 @@
+[
+    { "row": 5, "seat": 1 },
+    { "row": 5, "seat": 2 },
+    { "row": 5, "seat": 3 },
+    { "row": 6, "seat": 1 },
+    { "row": 6, "seat": 2 },
+    { "row": 6, "seat": 3 }
+  ]

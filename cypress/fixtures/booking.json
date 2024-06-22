@@ -1,0 +1,11 @@
+{
+    "Hall4": "input[value='Зал4'][name='sales-hall']",
+    "Hall4Config": "input[value='Зал4'][name='chairs-hall']",
+    "openMessage": "#start-sales > .text-center > .conf-step__paragraph",
+    "openButton": "#start-sales .conf-step__button",
+    "book": "#hall-configuration > .conf-step__wrapper > .conf-step__buttons > .conf-step__button-accent",
+    "success": "#price-configuration > .conf-step__wrapper > .conf-step__buttons > .conf-step__button-accent",
+    "acess": "body nav a:nth-child(2)",
+    "accept": ".acceptin-button",
+    "timeSelect": ":nth-child(3) > :nth-child(3) > .movie-seances__list > .movie-seances__time-block > .movie-seances__time"
+}
