@@ -2,27 +2,31 @@ const body = require("../fixtures/user.json");
 const updateBody = require("../fixtures/userUpdate.json");
 
 describe("API tests", () => {
-    afterEach(() => {
-        cy.deleteUser(body.username);
-    });
 
+    let body;
+    beforeEach(() => {
+        const randomId = Math.floor(Math.random() * 10000);
+        body = {
+            id: randomId
+        };
+    });
     it("Add user", () => {
         cy.addUser(body)
             .then((response) => {
                 expect(response.status).eq(200);
-                expect(response.body.message).eq("666");
+                expect(response.body.message).eq(String(body.id));
             });
     });
 
     it("Get user", () => {
-        cy.addUser(body);
         cy.getUser(body.username)
+        cy.addUser(body)
             .then((response) => {
                 expect(response.status).eq(200);
-                expect(response.body.id).eq(body.id);
-                expect(response.body).to.have.property("username", body.username);
-                expect(response.body).to.have.property("firstName", body.firstName);
-                expect(response.body).to.have.property("lastName", body.lastName);
+                expect(response.body.message).eq(String(body.id));
+                expect(response.body).hasOwnProperty("username", body.username);
+                expect(response.body).hasOwnProperty("firstName", body.firstName);
+                expect(response.body).hasOwnProperty("lastName", body.lastName);
             });
     });
 
@@ -30,7 +34,6 @@ describe("API tests", () => {
         cy.addUser(body);
         cy.updateUser(body.username, updateBody)
             .then((response) => {
-                //cy.log(JSON.stringify(response.body));
                 expect(response.status).eq(200);
                 expect(response.body.message).eq("999");
                 cy.getUser(updateBody.username)
@@ -48,7 +51,6 @@ describe("Delete user", () => {
         cy.addUser(body);
         cy.deleteUser(body.username)
             .then((response) => {
-                //cy.log(JSON.stringify(response.body));
                 expect(response.status).eq(200);
                 expect(response.body.message).eq(body.username);
             });

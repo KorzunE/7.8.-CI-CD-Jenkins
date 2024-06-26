@@ -4,11 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:API:chrome": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/API.cy.js' --group API:chrome --browser chrome",
+    "test:cinema:chrome": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/cinema.cy.js' --group cinema:chrome --browser chrome",
+    "test:parallel:chrome": "run-p -c test:cinema:chrome test:API:chrome",
+    "test:parallel:chrome:electron": "run-p -c test:cinema:chrome test:API:electron",
+    "test:API:electron": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/API.cy.js' --group API:electron --browser electron",
+    "test:cinema:electron": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/cinema.cy.js' --group cinema:electron --browser electron",
+    "test:parallel:electron": "run-p -c test:cinema:electron test:API:electron",
+    "test:API:edge": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/API.cy.js' --group API:edge --browser edge",
+    "test:cinema:edge": "npx cypress run --record --key fb6d5923-6066-46dd-b304-5f0e3dac2bef --spec 'cypress/e2e/cinema.cy.js' --group cinema:edge --browser edge",
+    "test:parallel:edge": "run-p -c test:cinema:edge test:API:edge",
+    "test:parallel:all": "run-p -c test:parallel:chrome test:parallel:edge test:parallel:electron"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.12.0"
+    "cypress": "^13.12.0",
+    "npm-run-all": "^4.1.5"
   }
 }
